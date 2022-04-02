@@ -1,0 +1,660 @@
+Game with sticks
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 1, M = 1e5 + 5, OO = 0x3f3f3f3f, MOD = 1e9+7;
+int n, m;
+int main(){
+scanf("%d %d", &n, &m);
+if(min(n, m) % 2 == 0) printf("Malvika\n");
+else printf("Akshat\n");
+return 0;
+}
+
+
+Generating fast
+
+#include <bits/stdc++.h>
+using namespace std;
+int n, m;
+char str[15];
+int main(){
+scanf("%d", &m);
+while(m--){
+scanf(" %s", str);
+n = strlen(str);
+sort(str, str+n);
+do{
+printf("%s\n", str);
+}while(next_permutation(str, str+n));
+printf("\n");
+}
+return 0;
+}
+
+
+Gravity flip
+
+#include <bits/stdc++.h>
+#define MOD 1000000007
+using namespace std;
+const int N = 100;
+int n, A[N+9];
+int main(){
+scanf("%d", &n);
+for(int i = 0 ; i < n ; ++i) scanf("%d", &A[i]);
+sort(A, A+n);
+for(int i = 0 ; i < n ; ++i) printf("%d ", A[i]);
+printf("\n");
+return 0;
+}
+
+
+
+Tarifa
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 1, M = 1e5 + 5, OO = 0x3f3f3f3f, MOD = 1e9+7;
+int n, x, y, sm;
+int main(){
+scanf("%d %d", &x, &n);
+for(int i = 0 ; i < n ; ++i){
+scanf("%d", &y);
+sm += x;
+sm -= y;
+}
+sm += x;
+printf("%d\n", sm);
+return 0;
+}
+
+
+Two fashillows
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 1, M = 1e5 + 5, OO = 0x3f3f3f3f, MOD = 1e9+7;
+int d, w, m;
+int main(){
+scanf("%d %d %d", &d, &w, &m);
+if(w+m <= d || w > d) printf("good luck\n");
+else printf("see you next semester\n");
+return 0;
+}
+
+
+Easy queue
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5 + 5, M = 4e5 + 5, OO = 0x3f3f3f3f;
+int t, n, x;
+queue<int> q;
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    scanf("%d", &n);
+    if(n == 1){
+      scanf("%d", &x);
+      q.push(x);
+    }else if(n == 2){
+      if(!q.empty())
+        q.pop();
+    }else{
+      if(q.empty()) printf("Empty!\n");
+      else  printf("%d\n", q.front());
+    }
+  }
+  return 0;
+}
+
+
+Generous kefa
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e2 + 5, M = 4e5 + 5, OO = 0x3f3f3f3f;
+int n, k;
+char s[N];
+int freq[128];
+int main(){
+  scanf("%d %d %s", &n, &k, s);
+  for(int i = 0 ; i < n ; ++i){
+    char c = s[i];
+    freq[c]++;
+    if(freq[c] > k){
+      printf("NO\n");
+      return 0;
+    }
+  }
+  printf("YES\n");
+  return 0;
+}
+
+
+Mafia
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5 + 5, M = 4e5 + 5, OO = 0x3f3f3f3f;
+int n, A[N];
+bool ok(long long x){
+  long long sum = 0;
+  for(int i = 0 ; i < n ; ++i){
+    sum += x-A[i];
+    if(A[i] > x)  return 0;
+  }
+  return sum >= x;
+}
+
+long long binarySearch(){
+  long long lo = 0, med, hi = 2e9;
+  while(lo<hi){
+    med = (lo+hi)>>1;
+    if(ok(med)) hi = med;
+    else  lo = med+1;
+  }
+  return lo;
+}
+int main(){
+  scanf("%d", &n);
+  for(int i = 0 ; i < n ; ++i)  scanf("%d", A+i);
+  printf("%lld\n", binarySearch());
+  return 0;
+}
+
+
+Pins
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5 + 5, M = 4e5 + 5, OO = 0x3f3f3f3f;
+long long r, x, y, a, b;
+int main(){
+  scanf("%lld %lld %lld %lld %lld", &r, &x, &y, &a, &b);
+  printf("%lld\n", (long long)(ceil((sqrt((x-a)*(x-a) + (y-b)*(y-b)))/(2*r))));
+  return 0;
+}
+
+
+Queries about less or
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e5 + 5, M = 4e5 + 5, OO = 0x3f3f3f3f;
+int n, m, A[N], x;
+int main(){
+  scanf("%d %d", &n, &m);
+  for(int i = 0 ; i < n ; ++i)  scanf("%d", A+i);
+  sort(A, A+n);
+  while(m--){
+    scanf("%d", &x);
+    printf("%d\n", upper_bound(A, A+n, x)-A);
+  }
+  return 0;
+}
+
+
+Number theroy
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e6+5, OO = 0x3f3f3f3f;
+vector<int> generateDivisors(int n){    //O(sqrt(n))
+  vector<int> divisors;
+  int i;
+  for(i = 1 ; i*i < n ; ++i){
+    if(n%i == 0){
+      divisors.push_back(i);
+      divisors.push_back(n/i);
+    }
+  }
+  if(i*i == n)  divisors.push_back(i);
+  return divisors;
+}
+
+//Generates all the multiples of x that are less than or equal to n
+vector<int> generateMultiples(int x, int n){    //O(n/x)
+  vector<int> multiples;
+  for(int i = x ; i <= n ; i += x)
+    multiples.push_back(i);
+  return multiples;
+}
+
+bool isPrimeFunction(int n){        //O(sqrt(n))
+  if(n < 2) return false;
+  for(int i = 2 ; i*i <= n ; ++i)
+    if(n%i==0)  return false;
+  return true;
+}
+
+bitset<N> isPrime;
+void sieve(){
+  isPrime.set();
+  isPrime[0] = isPrime[1] = 0;
+  for(int i = 2 ; i*i <= N; ++i){     //O(n*log(log(n))) ~= O(n)
+    if(isPrime[i]){
+      for(int j = i*i ; j <= N ; j+=i){
+        isPrime[j] = 0;
+      }
+    }
+  }
+}
+
+int x;
+int main(){
+  scanf("%d", &x);
+  sieve();
+  for(int i = 0 ; i <= x ; ++i){
+    if(isPrime[i])  printf("%d ", i);
+  }
+  printf("\n");
+  return 0;
+}
+
+
+Prime factorization
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e6+5, OO = 0x3f3f3f3f;
+typedef long long ll;
+vector<pair<ll, int> > getPFactors(ll n){
+  vector<pair<ll, int> > pFactors;
+  for(ll i = 2 ; i*i <= n ; i += 1 + (i&1)){
+    int e = 0;
+    while(n%i == 0){
+      n /= i;
+      ++e;
+    }
+    if(e)   pFactors.push_back({i, e});
+  }
+  if(n > 1) pFactors.push_back({n, 1});
+  return pFactors;
+}
+
+int main(){
+  int n;
+  scanf("%d", &n);
+  vector<pair<ll, int> > ans = getPFactors(n);
+  for(int i = 0 ; i < ans.size() ; ++i){
+    printf("%lld^%d\n", ans[i].first, ans[i].second);
+  }
+  return 0;
+}
+
+
+Recursion
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll fact(ll n){
+  if(n <= 1)  return 1;
+  return n * fact(n-1);
+}
+ll fib(ll n){
+  if(n <= 2)  return 1;
+  return fib(n-1)+fib(n-2);
+}
+
+ll power(ll base, ll exponent){
+  if(exponent == 0)   return 1;
+  return base * power(base, exponent-1);
+}
+
+ll fPower(ll base, ll exponent){
+  if(exponent == 0)   return 1;
+  ll sub = fPower(base, exponent/2);
+  return sub*sub*(exponent&1?base:1);
+}
+
+ll gcd(ll a, ll b){
+  if(!b)  return a;
+  return gcd(b, a%b);
+}
+
+int A[2009], B[2009];
+int n;
+
+void mergeLists(int strt1, int end1, int strt2, int end2){
+  ll strt = strt1;
+  ll idx = 0;
+  while(strt1<end1 && strt2<end2){
+      if(A[strt1] < A[strt2])   B[idx++] = A[strt1++];
+      else    B[idx++] = A[strt2++];
+  }
+  while(strt1 < end1) B[idx++] = A[strt1++];
+  while(strt2 < end2) B[idx++] = A[strt2++];
+  copy(B, B+idx, A+strt);
+}
+
+void mergeSort(int strt, int last){
+  ll sz = last-strt;
+  if(sz < 2)  return;
+  mergeSort(strt, strt+sz/2);
+  mergeSort(strt+sz/2, last);
+  mergeLists(strt, strt+sz/2, strt+sz/2, last);
+}
+
+int main(){
+  fPower(3, 15);
+  cout << x;
+  scanf("%d", &n);
+  for(int i = 0 ; i < n ; ++i)  scanf("%d", A+i);
+  mergeSort(0, n);
+  for(int i = 0 ; i < n ; ++i)  printf("%d ", A[i]);
+  printf("\n");
+  return 0;
+}
+
+
+
+Burger time
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 2e6 + 5, M = 1e5 + 5, OO = 0x3f3f3f3f;
+int n, mini, lastR, lastD;
+char s[N];
+int main(){
+  // freopen("i.in", "rt", stdin);
+  // freopen("o.out", "w", stdout);
+  while(scanf("%d", &n), n){
+    scanf("%s", s);
+    mini = OO;
+    lastD = lastR = -OO;
+    for(int i = 0 ; i < n ; ++i){
+      if(s[i] == 'Z'){
+        mini = 0;
+        break;
+      }
+      else if(s[i] == 'R'){
+        lastR = i;
+        mini = min(mini, lastR-lastD);
+      }
+      else if(s[i] == 'D'){
+        lastD = i;
+        mini = min(mini, lastD-lastR);
+      }
+    }
+    printf("%d\n", mini);
+  }
+  return 0;
+}
+
+
+
+N queen
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 24, M = 25, OO = 0x3f3f3f3f;
+int n;
+char grid[N][N];
+void printGrid(){
+  for(int i = 0 ; i < n ; ++i){
+    for(int j = 0 ; j < n ; ++j){
+      printf("%c|", grid[i][j]);
+    }
+    printf("\n");
+  }
+  printf("-----------------------\n");
+}
+int x;
+int attacked[N][N];
+void solve(int r){
+  if(r == n){
+    printGrid();
+    return;
+  }
+  for(int c = 0 ; c < n ; ++c){
+    if(!attacked[r][c]){
+      grid[r][c] = 'Q';
+      for(int i = 0 ; i < n ; ++i)  attacked[i][c]++;
+      for(int i = 0 ; i < n ; ++i)  attacked[r][i]++;
+      for(int i = -n+1 ; i < n ; ++i)
+        if(r+i>=0 && r+i<n && c+i>=0 && c+i<n)
+          attacked[r+i][c+i]++;
+      for(int i = -n+1 ; i < n ; ++i)
+        if(r+i>=0 && r+i<n && c-i>=0 && c-i<n)
+          attacked[r+i][c-i]++;
+      solve(r+1);
+      for(int i = 0 ; i < n ; ++i)  attacked[i][c]--;
+      for(int i = 0 ; i < n ; ++i)  attacked[r][i]--;
+      for(int i = -n+1 ; i < n ; ++i)
+        if(r+i>=0 && r+i<n && c+i>=0 && c+i<n)
+          attacked[r+i][c+i]--;
+      for(int i = -n+1 ; i < n ; ++i)
+        if(r+i>=0 && r+i<n && c-i>=0 && c-i<n)
+          attacked[r+i][c-i]--;
+      grid[r][c] = '.';
+    }
+  }
+  return;
+}
+
+int main(){
+  scanf("%d", &n);
+  for(int i = 0 ; i < n ; ++i)
+    for(int j = 0 ; j < n ; ++j)
+      grid[i][j] = '.';
+  solve(0);
+  return 0;
+}
+
+
+
+Ratlen maze
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 24, M = 25, OO = 0x3f3f3f3f;
+int n, m;
+char grid[N][N];
+vector<char> solution;
+int rr, rc, cr, cc;
+void printSolution(){
+  for(int i = 0 ; i < solution.size() ; ++i)
+    printf("%c ", solution[i]);
+  printf("\n");
+}
+void solve(int r, int c){
+  if(r == rc && c == cc){
+    printSolution();
+    return;
+  }
+  if(c+1 < m && grid[r][c+1]!='#'){
+    solution.push_back('R');
+    solve(r, c+1);
+    solution.pop_back();
+  }
+  if(r+1 < n && grid[r+1][c]!='#'){
+    solution.push_back('D');
+    solve(r+1, c);
+    solution.pop_back();
+  }
+}
+
+int main(){
+  scanf("%d %d", &n, &m);
+  for(int i = 0 ; i < n ; ++i){
+    scanf("%s", grid[i]);
+    for(int j = 0 ; j < m ; ++j){
+      if(grid[i][j] == 'R') rr = i, cr=j;
+      if(grid[i][j] == 'C') rc = i, cc=j;
+    }
+  }
+  solve(rr, cr);
+  return 0;
+}
+
+
+
+Ballons
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 24, OO = 0x3f3f3f3f;
+int t, n, ans, x;
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    ans = 0;
+    scanf("%d", &n);
+    for(int i = 0 ; i < n ; ++i){
+      scanf("%d", &x);
+      ans += (x!=0);
+    }
+    printf("%d\n", ans);
+  }
+  return 0;
+}
+
+
+Chance
+
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1e5+9, M = 1e3+9, OO = 1000000007;
+const double EPS = 0.0000001;
+int t, l, r;
+int pre[N], prime[30];
+bool isPrime(int n){
+  for(int i = 2 ; i*i <= n ; ++i){
+    if(n%i == 0)  return 0;
+  }
+  return 1;
+}
+
+void generatePrimeList(){
+  for(int i = 2 ; i < 25 ; ++i){
+    prime[i] = isPrime(i);
+  }
+}
+
+void prepro(){
+  for(int msk = 1 ; msk < N ; ++msk){
+    int cnt = 0;
+    for(int j = 0 ; j < 25 ; ++j)
+      if((msk>>j)&1)  ++cnt;
+    pre[msk] = pre[msk-1] + prime[cnt];
+  }
+}
+
+int main(){
+  generatePrimeList();
+  prepro();
+  scanf("%d", &t);
+  while(t--){
+    scanf("%d %d", &l ,&r);
+    printf("%d\n", pre[r] - ( l>0 ? pre[l-1] : 0));
+  }
+  return 0;
+}
+
+
+Cube
+
+#include <bits/stdc++.h>
+using namespace std;
+int t, n;
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    scanf("%d", &n);
+    printf("%d\n", int(sqrt(n/6)));
+  }
+  return 0;
+}
+
+
+March rain
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5+5, OO = 0x3f3f3f3f;
+int t, n, A[N], k;
+bool ok(int l){
+  int next = 0;
+  for(int i = 0 ; i < k ; ++i){
+    next = upper_bound(A, A+n, A[next]+l-1)-A;
+    if(next == n) return 1;
+  }
+  return 0;
+}
+
+int binarySearch(){
+  int lo = 0, med, hi = 1e9+5;
+  while(lo < hi){
+    med = (lo+hi)>>1;
+    if(ok(med)) hi = med;
+    else  lo = med+1;
+  }
+  return lo;
+}
+
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    scanf("%d %d", &n, &k);
+    for(int i = 0 ; i < n ; ++i)  scanf("%d", A+i);
+    printf("%d\n", binarySearch());
+  }
+  return 0;
+}
+
+
+
+Ya rajaie and books
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e3+5, OO = 0x3f3f3f3f, mod = 1000000007;
+int t, n;
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    scanf("%d", &n);
+    printf("%d\n", (n+4)/5);
+  }
+  return 0;
+}
+
+
+
+Zero array
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5+5, OO = 0x3f3f3f3f;
+int t, n, A[N], p, v, type, q, ans;
+map<int, int> freq;
+int main(){
+  scanf("%d", &t);
+  while(t--){
+    ans = 0;
+    freq.clear();
+    scanf("%d %d", &n, &q);
+    for(int i = 0 ; i < n ; ++i){
+      scanf("%d", A+i);
+      if(A[i] && !freq[A[i]])  ++ans;
+      ++freq[A[i]];
+    }
+    while(q--){
+      scanf("%d", &type);
+      if(type == 1){
+        scanf("%d %d", &p, &v);
+        --freq[A[p-1]];
+        if(A[p-1] && !freq[A[p-1]]) --ans;
+        if(v && !freq[v])  ++ans;
+        A[p-1] = v;
+        ++freq[v];
+      }else{
+        printf("%d\n", ans);
+      }
+    }
+  }
+  return 0;
+}
